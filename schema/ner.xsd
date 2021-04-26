@@ -13,8 +13,14 @@
 		<sequence>
 			<element name="Metadata" type="ne:MetadataType"/>
 			<element name="ExternalContent" type="ne:ExternalContentType"/>
-			<element name="Entities" type="ne:EntitiesType"/>
-			<element name="Relations" type="ne:RelationsType"/>
+			<element name="Entities" type="ne:EntitiesType">
+				<annotation>
+					<documentation>Entities and attributes</documentation>
+				</annotation></element>
+			<element name="Relations" type="ne:RelationsType">
+				<annotation>
+					<documentation>Relations between entities</documentation>
+				</annotation></element>
 		</sequence>
 		<attribute name="id" type="string"/>
 	</complexType>
@@ -24,18 +30,29 @@
 		</sequence>
 		<attribute name="created" type="dateTime"/>
 		<attribute name="lastChange" type="dateTime"/>
-		<attribute name="ontologyId" type="string"/>
+		<attribute name="ontologyId" type="string">
+			<annotation>
+				<documentation>ID as specified in the ontology that defines entity and relation types</documentation>
+			</annotation></attribute>
 		<attribute name="ontologyVersion" type="string"/>
 	</complexType>
 	<complexType name="MetadataItemType">
 		<simpleContent>
 			<extension base="string">
-				<attribute name="type" type="string"/>
+				<attribute name="type" type="ne:MetadataItemSimpleType">
+				</attribute>
 				<attribute name="customType" type="string"/>
 				<attribute name="date" type="dateTime"/>
 			</extension>
 		</simpleContent>
 	</complexType>
+	<simpleType name="MetadataItemSimpleType">
+		<restriction base="string">
+			<enumeration value="Comments"></enumeration>
+			<enumeration value="Author"></enumeration>
+			<enumeration value="Other"></enumeration>
+		</restriction>
+	</simpleType>
 	<complexType name="ExternalContentType">
 		<annotation>
 			<documentation>Containers typically relate to external content files such as PAGE</documentation>
@@ -49,103 +66,225 @@
 			<element name="Cont" type="ne:ContainerType" minOccurs="0" maxOccurs="unbounded"/>
 		</sequence>
 		<attribute name="id" type="ID" use="required"/>
-		<attribute name="type" type="string"/>
-		<attribute name="externalRef" type="string"/>
-		<attribute name="filename" type="string"/>
+		<attribute name="type" type="ne:ContainerSimpleType"/>
+		<attribute name="externalRef" type="string">
+			<annotation>
+				<documentation>Typically the ID of the referenced object</documentation>
+			</annotation></attribute>
+		<attribute name="filename" type="string">
+			<annotation>
+				<documentation>Filename of a referenced root container</documentation>
+			</annotation></attribute>
 	</complexType>
+	<simpleType name="ContainerSimpleType">
+		<restriction base="string">
+			<enumeration value="page"></enumeration>
+			<enumeration value="region"></enumeration>
+			<enumeration value="textLine"></enumeration>
+			<enumeration value="word"></enumeration>
+		</restriction>
+	</simpleType>
 	<complexType name="EntitiesType">
 		<sequence>
-			<element name="E" type="ne:EntityType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="E" type="ne:EntityType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Entity</documentation>
+				</annotation></element>
 		</sequence>
 	</complexType>
 	<complexType name="EntityType">
 		<sequence>
-			<element name="Norm" type="string" minOccurs="0"/> <!-- optional normalized value-->
-			<element name="TIn" type="ne:TextInstanceType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="CIn" type="ne:CoordinatesInstanceType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="OIn" type="ne:ObjectInstanceType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="A" type="ne:EntityAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Norm" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Normalised value</documentation>
+				</annotation></element> <!-- optional normalized value-->
+			<element name="TIn" type="ne:TextInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of entity within text/transcription</documentation>
+				</annotation></element>
+			<element name="CIn" type="ne:CoordinatesInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of entity in 2D space (e.g. within document image)</documentation>
+				</annotation></element>
+			<element name="OIn" type="ne:ObjectInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of entity linked to external object (e.g. Word object in PAGE)</documentation>
+				</annotation></element>
+			<element name="A" type="ne:EntityAttributeType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Attribute of entity</documentation>
+				</annotation></element>
 		</sequence>
-		<attribute name="id" type="string"/>
-		<attribute name="t" type="string"/> <!-- type -->
+		<attribute name="id" type="ID" use="required"/>
+		<attribute name="t" type="string" use="required">
+			<annotation>
+				<documentation>Type as defined in ontology</documentation>
+			</annotation></attribute> <!-- type -->
 	</complexType>
 	<complexType name="EntityAttributeType">
 		<sequence>
-			<element name="Norm" type="string" minOccurs="0"/> <!-- optional normalized value-->
-			<element name="TIn" type="ne:TextInstanceType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="CIn" type="ne:CoordinatesInstanceType" minOccurs="0" maxOccurs="unbounded"/>
-			<element name="OIn" type="ne:ObjectInstanceType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="Norm" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Normalised value</documentation>
+				</annotation></element> <!-- optional normalized value-->
+			<element name="TIn" type="ne:TextInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of attribute within text/transcription</documentation>
+				</annotation></element>
+			<element name="CIn" type="ne:CoordinatesInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of attribute in 2D space (e.g. within document image)</documentation>
+				</annotation></element>
+			<element name="OIn" type="ne:ObjectInstanceType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Instance of attribute linked to external object (e.g. Word object in PAGE)</documentation>
+				</annotation></element>
 		</sequence>
-		<attribute name="id" type="string"/>
-		<attribute name="t" type="string"/> <!-- type -->
+		<attribute name="id" type="ID" use="required"/>
+		<attribute name="t" type="string" use="required">
+			<annotation>
+				<documentation>Attribute type as defined in ontology</documentation>
+			</annotation></attribute> <!-- type -->
 	</complexType>
 	<complexType name="TextInstanceType">
 		<sequence>
-			<element name="Pos" type="ne:TextPositionType" minOccurs="1" maxOccurs="unbounded"/>
-			<element name="Val" type="string" minOccurs="0"/>
+			<element name="Pos" type="ne:TextPositionType" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Position in text (tag)</documentation>
+				</annotation></element>
+			<element name="Val" type="string" minOccurs="0">
+				<annotation>
+					<documentation>Value of instance (e.g. copy of text)</documentation>
+				</annotation></element>
 		</sequence>
-		<attribute name="c" type="string"/> <!-- content container -->
+		<attribute name="c" type="IDREF" use="required">
+			<annotation>
+				<documentation>Container</documentation>
+			</annotation></attribute> <!-- content container -->
 	</complexType>
 	<complexType name="TextPositionType">
-		<attribute name="tok" type="int"/>
-		<attribute name="n" type="int"/>
-		<attribute name="startOff" type="int"/>
-		<attribute name="endOff" type="int"/>
-		<attribute name="c" type="string"/>
-		<attribute name="equiv" type="string"/>
+		<attribute name="tok" type="int" use="required">
+			<annotation>
+				<documentation>Start token index (zero-based)</documentation>
+			</annotation></attribute>
+		<attribute name="n" type="int" default="1">
+			<annotation>
+				<documentation>Number of tokens</documentation>
+			</annotation></attribute>
+		<attribute name="startOff" type="int">
+			<annotation>
+				<documentation>Character start offset in start token (zero-based, inclusive)</documentation>
+			</annotation></attribute>
+		<attribute name="endOff" type="int">
+			<annotation>
+				<documentation>Character end offset in last token (zero-based, exclusive)</documentation>
+			</annotation></attribute>
+		<attribute name="c" type="IDREF">
+			<annotation>
+				<documentation>Container (optional, overrides container of parent instance)</documentation>
+			</annotation></attribute>
+		<attribute name="equiv" type="string">
+			<annotation>
+				<documentation>Equivalence ID (used to associate parts of other instances; e.g. text instance - coordinate instance)</documentation>
+			</annotation></attribute>
 	</complexType>
 	<complexType name="CoordinatesInstanceType">
-		<sequence>
-			<element name="Poly" type="ne:PolygonPositionType" minOccurs="0" maxOccurs="unbounded"/>
+        <annotation>
+        	<documentation>Instance of entity in 2D space (e.g. within document image)</documentation></annotation>
+        <sequence>
+			<element name="Poly" type="ne:PolygonPositionType" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Polygon</documentation>
+				</annotation></element>
 <!--			<element name="Rect" type="ne:RectanglePositionType" minOccurs="0" maxOccurs="unbounded"/>-->
 		</sequence>
-		<attribute name="c" type="string"/>
+		<attribute name="c" type="IDREF" use="required">
+			<annotation>
+				<documentation>Container</documentation></annotation></attribute>
 	</complexType>
 	<complexType name="PolygonPositionType">
-		<attribute name="pts" type="string"/>
-		<attribute name="c" type="string"/>
-		<attribute name="equiv" type="string"/>
+		<attribute name="pts" type="string">
+			<annotation>
+				<documentation>Polygon points in x1,y1 x2,y2 format</documentation>
+			</annotation></attribute>
+		<attribute name="c" type="IDREF">
+			<annotation>
+				<documentation>Container (optiona, overrides container of parent instance)</documentation>
+			</annotation></attribute>
+		<attribute name="equiv" type="string">
+			<annotation>
+				<documentation>Equivalence ID (used to associate part of other instance; e.g. text instance - coordinate instance)</documentation>
+			</annotation></attribute>
 	</complexType>
 	<complexType name="ObjectInstanceType">
 		<sequence>
-			<element name="ORef" type="ne:ObjectReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="ORef" type="ne:ObjectReferenceType" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Object reference</documentation>
+				</annotation></element>
 		</sequence>
-		<attribute name="c" type="string"/> <!-- content container -->
+		<attribute name="c" type="IDREF" use="required">
+			<annotation>
+				<documentation>Container</documentation></annotation></attribute> <!-- content container -->
 	</complexType>
 	<complexType name="ObjectReferenceType">
-		<attribute name="ext" type="string"/>
-		<attribute name="c" type="string"/>
+		<attribute name="ext" type="string">
+			<annotation>
+				<documentation>External ID</documentation>
+			</annotation></attribute>
+		<attribute name="c" type="string">
+			<annotation>
+				<documentation>Container (optiona, overrides container of parent instance)</documentation>
+			</annotation></attribute>
 	</complexType>
 	<complexType name="RelationsType">
 		<choice minOccurs="0" maxOccurs="unbounded">
-			<element name="DirRel" type="ne:DirectRelationType"/>
+			<element name="DirRel" type="ne:DirectedRelationType"/>
 			<element name="MutRel" type="ne:MutualRelationType"/>
 		</choice>
 	</complexType>
 	<complexType name="RelationType">
-		<attribute name="id" type="string"/>
-		<attribute name="t" type="string"/>
+		<attribute name="id" type="ID" use="required"/>
+		<attribute name="t" type="string" use="required">
+			<annotation>
+				<documentation>Type as defined in ontology</documentation>
+			</annotation></attribute>
 	</complexType>
-	<complexType name="DirectRelationType">
-		<complexContent>
+	<complexType name="DirectedRelationType">
+        <annotation>
+        	<documentation>Directed relation (not symmetric). E.g. child - parent</documentation>
+        </annotation>
+        <complexContent>
 			<extension base="ne:RelationType">
 				<sequence>
-					<element name="S" type="ne:EntityReferenceType" maxOccurs="unbounded"/>
-					<element name="T" type="ne:EntityReferenceType" maxOccurs="unbounded"/>
+					<element name="S" type="ne:EntityReferenceType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Source entity</documentation>
+						</annotation></element>
+					<element name="T" type="ne:EntityReferenceType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Target entity</documentation>
+						</annotation></element>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<complexType name="MutualRelationType">
-		<complexContent>
+        <annotation>
+        	<documentation>Mutual relation (symmetric). E.g. person isRelatedTo person</documentation>
+        </annotation>
+        <complexContent>
 			<extension base="ne:RelationType">
 				<sequence>
-					<element name="M" type="ne:EntityReferenceType" minOccurs="2" maxOccurs="unbounded"/>
+					<element name="M" type="ne:EntityReferenceType" minOccurs="2" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Relation member</documentation>
+						</annotation></element>
 				</sequence>
 			</extension>
 		</complexContent>
 	</complexType>
 	<complexType name="EntityReferenceType">
-		<attribute name="e" type="string"/>
+		<attribute name="e" type="IDREF" use="required"/>
 	</complexType>
 </schema>
