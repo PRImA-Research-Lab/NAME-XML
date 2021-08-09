@@ -21,6 +21,10 @@
 				<annotation>
 					<documentation>Relations between entities</documentation>
 				</annotation></element>
+			<element name="Highlights" type="ne:HighlightsType" minOccurs="0">
+				<annotation>
+					<documentation>Highlighted text parts</documentation>
+				</annotation></element>
 		</sequence>
 		<attribute name="id" type="string"/>
 	</complexType>
@@ -286,5 +290,22 @@
 	</complexType>
 	<complexType name="EntityReferenceType">
 		<attribute name="e" type="IDREF" use="required"/>
+	</complexType>
+	<complexType name="HighlightsType">
+		<sequence>
+			<element name="H" type="ne:HighlightType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="HighlightType">
+		<sequence>
+			<element name="Pos" type="ne:TextPositionType" minOccurs="1" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Position in text (tag)</documentation>
+				</annotation></element>
+		</sequence>
+		<attribute name="c" type="IDREF" use="required">
+			<annotation>
+				<documentation>Container</documentation>
+			</annotation></attribute> <!-- content container -->
 	</complexType>
 </schema>
