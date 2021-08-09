@@ -307,5 +307,7 @@
 			<annotation>
 				<documentation>Container</documentation>
 			</annotation></attribute> <!-- content container -->
+		<attribute name="comments" type="string">
+			</attribute>
 	</complexType>
 </schema>
