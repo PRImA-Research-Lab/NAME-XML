@@ -253,6 +253,7 @@
 			<annotation>
 				<documentation>Type as defined in ontology</documentation>
 			</annotation></attribute>
+		<attribute name="comments" type="string"/>
 	</complexType>
 	<complexType name="DirectedRelationType">
         <annotation>
@@ -307,6 +308,7 @@
 			<annotation>
 				<documentation>Container</documentation>
 			</annotation></attribute> <!-- content container -->
+		<attribute name="t" type="string"/>
 		<attribute name="comments" type="string">
 			</attribute>
 	</complexType>
