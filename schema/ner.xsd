@@ -254,6 +254,8 @@
 				<documentation>Type as defined in ontology</documentation>
 			</annotation></attribute>
 		<attribute name="comments" type="string"/>
+				<attribute name="resolved" type="boolean">
+			</attribute>
 	</complexType>
 	<complexType name="DirectedRelationType">
         <annotation>
@@ -310,6 +312,8 @@
 			</annotation></attribute> <!-- content container -->
 		<attribute name="t" type="string"/>
 		<attribute name="comments" type="string">
+			</attribute>
+		<attribute name="resolved" type="boolean">
 			</attribute>
 	</complexType>
 </schema>
