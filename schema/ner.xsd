@@ -127,7 +127,7 @@
 		<attribute name="parent" type="IDREF">
 			<annotation>
 				<documentation>Link to parent entity (intended for nested entities with parent-child relationship in ontology)</documentation>
-			</annotation></attribute> <!-- type -->
+			</annotation></attribute>
 	</complexType>
 	<complexType name="EntityAttributeType">
 		<sequence>
@@ -153,6 +153,10 @@
 			<annotation>
 				<documentation>Attribute type as defined in ontology</documentation>
 			</annotation></attribute> <!-- type -->
+		<attribute name="parent" type="IDREF">
+			<annotation>
+				<documentation>Link to parent entity (intended for nested attributes with parent-child relationship in ontology)</documentation>
+			</annotation></attribute>
 	</complexType>
 	<complexType name="TextInstanceType">
 		<sequence>
