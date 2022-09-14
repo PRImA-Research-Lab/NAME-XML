@@ -124,6 +124,10 @@
 			<annotation>
 				<documentation>Type as defined in ontology</documentation>
 			</annotation></attribute> <!-- type -->
+		<attribute name="parent" type="IDREF">
+			<annotation>
+				<documentation>Link to parent entity (intended for nested entities with parent-child relationship in ontology)</documentation>
+			</annotation></attribute> <!-- type -->
 	</complexType>
 	<complexType name="EntityAttributeType">
 		<sequence>
