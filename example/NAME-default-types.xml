@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NEM version="1.0" id="NAME_Default">
+  <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-26T14:23:22">
+    <Item type="comments" date="2023-04-26T07:54:27">Based on SpaCy default entity types, see spacy.io</Item>
+  </Metadata>
+  <EntityTypes>
+    <ET id="PERS" name="PERSON" cat="People">
+      <Descr>People, including fictional.</Descr>
+      <Custom>
+        <Attr name="col" val="#7b1fa2"/>
+      </Custom>
+      <AT id="GIV" name="GIVEN_NAME" cat="People">
+        <Descr>A person's given name / first name</Descr>
+        <Custom>
+          <Attr name="col" val="#ba68c8"/>
+        </Custom>
+      </AT>
+      <AT id="SUR" name="SURNAME" cat="People">
+        <Descr>A person's surname / family name / last name</Descr>
+        <Custom>
+          <Attr name="col" val="#e1bee7"/>
+        </Custom>
+      </AT>
+      <AT id="GEN" name="GENDER" cat="People" implied="true">
+        <Descr>A person's gender as implied by the text</Descr>
+        <Predefined>
+          <Val txt="female" sym="♀" col="#e91e63"/>
+          <Val txt="male" sym="♂" col="#1976d2"/>
+          <Val txt="other" sym="x"/>
+        </Predefined>
+      </AT>
+    </ET>
+    <ET id="NORP" name="NORP" cat="People">
+      <Descr>Nationalities or religious or political groups.</Descr>
+      <Custom>
+        <Attr name="col" val="#bbdefb"/>
+      </Custom>
+    </ET>
+    <ET id="FAC" name="FAC" cat="Things">
+      <Descr>Buildings, airports, highways, bridges, etc.</Descr>
+      <Custom>
+        <Attr name="col" val="#969696"/>
+      </Custom>
+    </ET>
+    <ET id="ORG" name="ORG" cat="Society">
+      <Descr>Companies, agencies, institutions, etc.</Descr>
+      <Custom>
+        <Attr name="col" val="#b71c1c"/>
+      </Custom>
+      <ET id="COM" name="COMPANY" cat="Society">
+        <Descr>A commercial business</Descr>
+        <Custom>
+          <Attr name="col" val="#e57373"/>
+        </Custom>
+      </ET>
+      <ET id="AGCY" name="AGENCY" cat="Society">
+        <Descr>A government organization</Descr>
+        <Custom>
+          <Attr name="col" val="#ffcdd2"/>
+        </Custom>
+      </ET>
+      <ET id="INST" name="INSTITUTION" cat="Society">
+        <Descr>An organization founded for a religious, educational, professional, or social purpose</Descr>
+        <Custom>
+          <Attr name="col" val="#ffccbc"/>
+        </Custom>
+      </ET>
+    </ET>
+    <ET id="GPE" name="GPE" cat="Places">
+      <Descr>Countries, cities, states.</Descr>
+      <Custom>
+        <Attr name="col" val="#388e3c"/>
+      </Custom>
+    </ET>
+    <ET id="LOC" name="LOC" cat="Places">
+      <Descr>Non-GPE locations, mountain ranges, bodies of water.</Descr>
+      <Custom>
+        <Attr name="col" val="#8bc34a"/>
+      </Custom>
+    </ET>
+    <ET id="PROD" name="PRODUCT" cat="Things">
+      <Descr>Objects, vehicles, foods, etc. (Not services.)</Descr>
+      <Custom>
+        <Attr name="col" val="#2196f3"/>
+      </Custom>
+    </ET>
+    <ET id="EVT" name="EVENT" cat="Then">
+      <Descr>Named hurricanes, battles, wars, sports events, etc.</Descr>
+      <Custom>
+        <Attr name="col" val="#525252"/>
+      </Custom>
+    </ET>
+    <ET id="ART" name="WORK_OF_ART" cat="Things">
+      <Descr>Titles of books, songs, etc.</Descr>
+      <Custom>
+        <Attr name="col" val="#e91e63"/>
+      </Custom>
+    </ET>
+    <ET id="LAW" name="LAW" cat="Society">
+      <Descr>Named documents made into laws.</Descr>
+      <Custom>
+        <Attr name="col" val="#d9d9d9"/>
+      </Custom>
+    </ET>
+    <ET id="LANG" name="LANGUAGE" cat="People">
+      <Descr>Any named language.</Descr>
+      <Custom>
+        <Attr name="col" val="#9c27b0"/>
+      </Custom>
+    </ET>
+    <ET id="DATE" name="DATE" cat="Then">
+      <Descr>Absolute or relative dates or periods.</Descr>
+      <Custom>
+        <Attr name="col" val="#00bcd4"/>
+      </Custom>
+    </ET>
+    <ET id="TIME" name="TIME" cat="Then">
+      <Descr>Times smaller than a day.</Descr>
+      <Custom>
+        <Attr name="col" val="#b2ebf2"/>
+      </Custom>
+    </ET>
+    <ET id="PCT" name="PERCENT" cat="Num">
+      <Descr>Percentage, including "%".</Descr>
+      <Custom>
+        <Attr name="col" val="#fff176"/>
+      </Custom>
+    </ET>
+    <ET id="MON" name="MONEY" cat="Num">
+      <Descr>Monetary values, including unit.</Descr>
+      <Custom>
+        <Attr name="col" val="#ffd54f"/>
+      </Custom>
+    </ET>
+    <ET id="QTY" name="QUANTITY" cat="Num">
+      <Descr>Measurements, as of weight or distance.</Descr>
+      <Custom>
+        <Attr name="col" val="#fff9c4"/>
+      </Custom>
+    </ET>
+    <ET id="ORD" name="ORDINAL" cat="Num">
+      <Descr>"first", "second", etc.</Descr>
+      <Custom>
+        <Attr name="col" val="#fbc02d"/>
+      </Custom>
+    </ET>
+    <ET id="CARD" name="CARDINAL" cat="Num">
+      <Descr>Numerals that do not fall under another type.</Descr>
+      <Custom>
+        <Attr name="col" val="#ffa000"/>
+      </Custom>
+    </ET>
+  </EntityTypes>
+  <RelationTypes>
+    <MutRel id="REL" name="RELATED_TO" cat="People" members="PERS">
+      <Descr>A family relation between two persons</Descr>
+      <Custom>
+        <Attr name="col" val="#fa28ff"/>
+      </Custom>
+    </MutRel>
+    <DirRel id="MO" name="HAS_MOTHER" cat="People" sources="PERS" targets="PERS">
+      <Descr>Source person has target person as mother</Descr>
+      <Custom>
+        <Attr name="col" val="#e64a19"/>
+      </Custom>
+    </DirRel>
+    <DirRel id="FA" name="HAS_FATHER" cat="People" sources="PERS" targets="PERS">
+      <Descr>Source person has target person as father</Descr>
+      <Custom>
+        <Attr name="col" val="#01579b"/>
+      </Custom>
+    </DirRel>
+    <DirRel id="START" name="START_DATE" cat="Then" sources="EVT NORP ORG COM AGCY INST ART LAW FAC" targets="DATE">
+      <Descr>Start date of an event, organisation, ...</Descr>
+      <Custom>
+        <Attr name="col" val="#999"/>
+      </Custom>
+    </DirRel>
+  </RelationTypes>
+</NEM>
