@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- defaults in XMLSchema: attribute use="optional" element minOccurs="1" maxOccurs="1" abstract="false" nillable="false" -->
+<schema targetNamespace="http://schema.primaresearch.org/NAME/nem/2023-05-01"
+	xmlns:nem="http://schema.primaresearch.org/NAME/nem/2023-05-01"
+	elementFormDefault="qualified"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	<element name="NEM" type="nem:NamedEntityModelType">
+		<annotation>
+			<documentation>Named entity model / ontology</documentation>
+		</annotation>
+	</element>
+	<complexType name="NamedEntityModelType">
+		<sequence>
+			<element name="Metadata" type="nem:MetadataType" />
+			<element name="EntityTypes" type="nem:EntityTypesType">
+				<annotation>
+					<documentation>Named entity types</documentation>
+				</annotation>
+			</element>
+			<element name="RelationTypes" type="nem:RelationTypesType"></element>
+		</sequence>
+		<attribute name="id" type="string"/>
+		<attribute name="version" type="string"/>
+	</complexType>
+	<complexType name="MetadataType">
+		<sequence>
+			<element name="Item" type="nem:MetadataItemType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+		<attribute name="created" type="dateTime"/>
+		<attribute name="lastChange" type="dateTime"/>
+	</complexType>
+	<complexType name="MetadataItemType">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="type" type="nem:MetadataItemSimpleType">
+				</attribute>
+				<attribute name="date" type="dateTime"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	<simpleType name="MetadataItemSimpleType">
+		<restriction base="string">
+			<enumeration value="Comments"></enumeration>
+			<enumeration value="Author"></enumeration>
+			<enumeration value="Other"></enumeration>
+		</restriction>
+	</simpleType>
+	<complexType name="EntityTypesType">
+		<sequence>
+			<element name="ET" type="nem:EntityTypeType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="BaseTypeType">
+		<sequence>
+			<element name="Descr" type="string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>Description</documentation>
+				</annotation>
+			</element>
+			<element name="Example" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="Comments" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="Custom" type="nem:CustomType" minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="id" type="ID" use="required"></attribute>
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="cat" type="string">
+			<annotation>
+				<documentation>Category</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="EntityTypeType">
+		<complexContent>
+			<extension base="nem:BaseTypeType">
+				<choice minOccurs="0" maxOccurs="unbounded">
+					<element name="AT" type="nem:AttributeTypeType"></element>
+					<element name="ET" type="nem:EntityTypeType"></element>
+				</choice>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="CustomType">
+		<sequence>
+			<element name="Attr" type="nem:AttrType"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AttrType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="value" type="string"></attribute>
+	</complexType>
+
+	<complexType name="AttributeTypeType">
+		<complexContent>
+			<extension base="nem:BaseTypeType">
+				<sequence>
+					<element name="Predefined" type="nem:PredefinedType" minOccurs="0" maxOccurs="1"></element>
+					<element name="AT" type="nem:AttributeTypeType"
+						minOccurs="0" maxOccurs="unbounded">
+					</element>
+				</sequence>
+				<attribute name="implied" type="boolean"></attribute>
+				<attribute name="symbol" type="string"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="PredefinedType">
+		<sequence>
+			<element name="Val" type="nem:ValType" maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ValType">
+		<attribute name="txt" type="string"></attribute>
+		<attribute name="sym" type="string"></attribute>
+		<attribute name="col" type="string"></attribute>
+	</complexType>
+
+	<complexType name="RelationTypesType">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="MutRel" type="nem:MutRelType"></element>
+			<element name="DirRel" type="nem:DirRelType"></element>
+		</choice>
+	</complexType>
+
+	<complexType name="MutRelType">
+		<complexContent>
+			<extension base="nem:BaseTypeType">
+				<attribute name="members" type="IDREFS"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="DirRelType">
+		<complexContent>
+			<extension base="nem:BaseTypeType">
+				<attribute name="sources" type="IDREFS"></attribute>
+				<attribute name="targets" type="IDREFS"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>
