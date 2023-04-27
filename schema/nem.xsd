@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- defaults in XMLSchema: attribute use="optional" element minOccurs="1" maxOccurs="1" abstract="false" nillable="false" -->
-<schema targetNamespace="http://schema.primaresearch.org/NAME/nem/2023-05-01"
-	xmlns:nem="http://schema.primaresearch.org/NAME/nem/2023-05-01"
+<schema targetNamespace="https://schema.primaresearch.org/NAME/nem/2023-05-01"
+	xmlns:nem="https://schema.primaresearch.org/NAME/nem/2023-05-01"
 	elementFormDefault="qualified"
 	xmlns="http://www.w3.org/2001/XMLSchema">
 	<element name="NEM" type="nem:NamedEntityModelType">
@@ -19,8 +19,14 @@
 			</element>
 			<element name="RelationTypes" type="nem:RelationTypesType"></element>
 		</sequence>
-		<attribute name="id" type="string"/>
-		<attribute name="version" type="string"/>
+		<attribute name="id" type="string">
+			<annotation>
+				<documentation></documentation>
+			</annotation></attribute>
+		<attribute name="version" type="string">
+			<annotation>
+				<documentation>Recommended format: major.minor, e.g. 1.0
+Minor updates should preserve backwards compatibility.</documentation></annotation></attribute>
 	</complexType>
 	<complexType name="MetadataType">
 		<sequence>
@@ -40,9 +46,9 @@
 	</complexType>
 	<simpleType name="MetadataItemSimpleType">
 		<restriction base="string">
-			<enumeration value="Comments"></enumeration>
-			<enumeration value="Author"></enumeration>
-			<enumeration value="Other"></enumeration>
+			<enumeration value="comments"></enumeration>
+			<enumeration value="author"></enumeration>
+			<enumeration value="other"></enumeration>
 		</restriction>
 	</simpleType>
 	<complexType name="EntityTypesType">
@@ -64,10 +70,16 @@
 			<element name="Comments" type="string" minOccurs="0"
 				maxOccurs="1">
 			</element>
-			<element name="Custom" type="nem:CustomType" minOccurs="0" maxOccurs="1"></element>
+			<element name="Custom" type="nem:CustomType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Customisation</documentation>
+				</annotation></element>
 		</sequence>
 		<attribute name="id" type="ID" use="required"></attribute>
-		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="name" type="string" use="required">
+			<annotation>
+				<documentation>Recommended to be unique</documentation>
+			</annotation></attribute>
 		<attribute name="cat" type="string">
 			<annotation>
 				<documentation>Category</documentation>
@@ -92,21 +104,36 @@
 	</complexType>
 
 	<complexType name="AttrType">
-		<attribute name="name" type="string"></attribute>
-		<attribute name="value" type="string"></attribute>
+		<attribute name="name" type="string">
+			<annotation>
+				<documentation>E.g. "col" for colour</documentation>
+			</annotation></attribute>
+		<attribute name="val" type="string">
+			<annotation>
+				<documentation>E.g. "#01579b" for a colour value</documentation>
+			</annotation></attribute>
 	</complexType>
 
 	<complexType name="AttributeTypeType">
 		<complexContent>
 			<extension base="nem:BaseTypeType">
 				<sequence>
-					<element name="Predefined" type="nem:PredefinedType" minOccurs="0" maxOccurs="1"></element>
+					<element name="Predefined" type="nem:PredefinedType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>Predefined values that can be used for implied attributes.</documentation>
+						</annotation></element>
 					<element name="AT" type="nem:AttributeTypeType"
 						minOccurs="0" maxOccurs="unbounded">
 					</element>
 				</sequence>
-				<attribute name="implied" type="boolean"></attribute>
-				<attribute name="symbol" type="string"></attribute>
+				<attribute name="implied" type="boolean">
+					<annotation>
+						<documentation>Implied attributes do not appear explicitly in the source document but are implied by other facts (e.g. a person's gender might be implied by the person's name).</documentation>
+					</annotation></attribute>
+				<attribute name="symbol" type="string">
+					<annotation>
+						<documentation>A one-character symbol represnting the attribute (used for implied).</documentation>
+					</annotation></attribute>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -125,15 +152,24 @@
 
 	<complexType name="RelationTypesType">
 		<choice minOccurs="0" maxOccurs="unbounded">
-			<element name="MutRel" type="nem:MutRelType"></element>
-			<element name="DirRel" type="nem:DirRelType"></element>
+			<element name="MutRel" type="nem:MutRelType">
+				<annotation>
+					<documentation>Mutual (undirected) relation</documentation>
+				</annotation></element>
+			<element name="DirRel" type="nem:DirRelType">
+				<annotation>
+					<documentation>Directed relation from source(s) to target(s)</documentation>
+				</annotation></element>
 		</choice>
 	</complexType>
 
 	<complexType name="MutRelType">
 		<complexContent>
 			<extension base="nem:BaseTypeType">
-				<attribute name="members" type="IDREFS"></attribute>
+				<attribute name="members" type="IDREFS">
+					<annotation>
+						<documentation>Allowed entity types</documentation>
+					</annotation></attribute>
 			</extension>
 		</complexContent>
 	</complexType>
@@ -141,8 +177,14 @@
 	<complexType name="DirRelType">
 		<complexContent>
 			<extension base="nem:BaseTypeType">
-				<attribute name="sources" type="IDREFS"></attribute>
-				<attribute name="targets" type="IDREFS"></attribute>
+				<attribute name="sources" type="IDREFS">
+					<annotation>
+						<documentation>Allowed source entity types</documentation>
+					</annotation></attribute>
+				<attribute name="targets" type="IDREFS">
+					<annotation>
+						<documentation>Allowed target entity types</documentation>
+					</annotation></attribute>
 			</extension>
 		</complexContent>
 	</complexType>
