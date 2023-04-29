@@ -79,13 +79,13 @@
       </Custom>
     </ET>
     <ET id="PROD" name="PRODUCT" cat="Things">
-      <Descr>Objects, vehicles, foods, etc. (Not services.)</Descr>
+      <Descr>Objects, cars, foods, etc. (Not services.)</Descr>
       <Custom>
         <Attr name="col" val="#2196f3"/>
       </Custom>
     </ET>
     <ET id="VEH" name="VEHICLE" cat="Things">
-      <Descr>Ships, trains, cars, ...</Descr>
+      <Descr>Named ships, trains, planes, cars, ...</Descr>
       <Custom>
         <Attr name="col" val="#64b5f6"/>
       </Custom>
