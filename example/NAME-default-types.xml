@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NEM version="1.0" id="NAME_Default">
-  <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-29T11:55:26">
+  <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-29T11:59:42">
     <Item type="comments" date="2023-04-26T07:54:27">Based on SpaCy default entity types, see spacy.io</Item>
   </Metadata>
   <EntityTypes>
@@ -176,7 +176,7 @@
         <Attr name="col" val="#999"/>
       </Custom>
     </DirRel>
-    <DirRel id="POS" name="POSITIONED" cat="Places" sources="FAC PROD PERS VEH" targets="LOC">
+    <DirRel id="POS" name="POSITIONED" cat="Places" sources="FAC PROD PERS VEH" targets="LOC GPE">
       <Descr>Current position of a thing or person</Descr>
       <Custom>
         <Attr name="col" val="#388e3c"/>
