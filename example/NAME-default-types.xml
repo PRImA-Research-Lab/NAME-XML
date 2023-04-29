@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NEM version="1.0" id="NAME_Default">
-  <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-26T14:23:22">
+  <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-29T11:55:26">
     <Item type="comments" date="2023-04-26T07:54:27">Based on SpaCy default entity types, see spacy.io</Item>
   </Metadata>
   <EntityTypes>
@@ -84,6 +84,12 @@
         <Attr name="col" val="#2196f3"/>
       </Custom>
     </ET>
+    <ET id="VEH" name="VEHICLE" cat="Things">
+      <Descr>Ships, trains, cars, ...</Descr>
+      <Custom>
+        <Attr name="col" val="#64b5f6"/>
+      </Custom>
+    </ET>
     <ET id="EVT" name="EVENT" cat="Then">
       <Descr>Named hurricanes, battles, wars, sports events, etc.</Descr>
       <Custom>
@@ -152,12 +158,6 @@
     </ET>
   </EntityTypes>
   <RelationTypes>
-    <MutRel id="REL" name="RELATED_TO" cat="People" members="PERS">
-      <Descr>A family relation between two persons</Descr>
-      <Custom>
-        <Attr name="col" val="#fa28ff"/>
-      </Custom>
-    </MutRel>
     <DirRel id="MO" name="HAS_MOTHER" cat="People" sources="PERS" targets="PERS">
       <Descr>Source person has target person as mother</Descr>
       <Custom>
@@ -176,5 +176,17 @@
         <Attr name="col" val="#999"/>
       </Custom>
     </DirRel>
+    <DirRel id="POS" name="POSITIONED" cat="Places" sources="FAC PROD PERS VEH" targets="LOC">
+      <Descr>Current position of a thing or person</Descr>
+      <Custom>
+        <Attr name="col" val="#388e3c"/>
+      </Custom>
+    </DirRel>
+    <MutRel id="REL" name="RELATED_TO" cat="People" members="PERS">
+      <Descr>A family relation between two persons</Descr>
+      <Custom>
+        <Attr name="col" val="#fa28ff"/>
+      </Custom>
+    </MutRel>
   </RelationTypes>
 </NEM>
