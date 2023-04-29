@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <NEM version="1.0" id="NAME_Default">
   <Metadata created="2023-04-26T07:48:09" lastChange="2023-04-29T11:59:42">
-    <Item type="comments" date="2023-04-26T07:54:27">Based on SpaCy default entity types, see spacy.io</Item>
+    <Item type="comments" date="2023-04-26T07:54:27">Based on SpaCy default entity types, see spacy.io. Added VEHICLE and various nested types</Item>
   </Metadata>
   <EntityTypes>
     <ET id="PERS" name="PERSON" cat="People">
