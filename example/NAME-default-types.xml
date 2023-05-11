@@ -176,8 +176,8 @@
         <Attr name="col" val="#999"/>
       </Custom>
     </DirRel>
-    <DirRel id="POS" name="POSITIONED" cat="Places" sources="FAC PROD PERS VEH" targets="LOC GPE">
-      <Descr>Current position of a thing or person</Descr>
+    <DirRel id="LOCD" name="LOCATED" cat="Places" sources="FAC PROD PERS VEH" targets="LOC GPE">
+      <Descr>Location of a thing or person</Descr>
       <Custom>
         <Attr name="col" val="#388e3c"/>
       </Custom>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<NE xmlns="http://schema.primaresearch.org/NAME/ne/2020-03-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/NAME/ne/2020-03-01 https://www.primaresearch.org/schema/NAME/ne/2020-03-01/ner.xsd">
+  <Metadata created="2023-04-27T13:07:41" lastChange="2023-05-01T09:14:53" ontologyId="NAME_Default" ontologyVersion="1.0"/>
+  <ExternalContent>
+    <Cont id="c1" type="page" filename="00311073_IMPACT_BL.xml">
+      <Cont id="c8" type="textLine" externalRef="l19"/>
+      <Cont id="c9" type="textLine" externalRef="l21"/>
+      <Cont id="c10" type="textLine" externalRef="l23"/>
+      <Cont id="c11" type="textLine" externalRef="l25"/>
+      <Cont id="c13" type="textLine" externalRef="l29"/>
+      <Cont id="c14" type="textLine" externalRef="l30"/>
+      <Cont id="c16" type="textLine" externalRef="l33"/>
+      <Cont id="c19" type="textLine" externalRef="l38"/>
+      <Cont id="c20" type="textLine" externalRef="l40"/>
+      <Cont id="c22" type="textLine" externalRef="l44"/>
+      <Cont id="c23" type="textLine" externalRef="l46"/>
+      <Cont id="c24" type="textLine" externalRef="l47"/>
+    </Cont>
+  </ExternalContent>
+  <Entities>
+    <E id="PERS6" t="PERS">
+      <TIn c="c8">
+        <Pos tok="3" n="2"/>
+        <Val>Spanish Embassadour</Val>
+      </TIn>
+    </E>
+    <E id="PERS7" t="PERS">
+      <TIn c="c8">
+        <Pos tok="6" n="2"/>
+        <Pos tok="0" n="3" endOff="6" c="c9"/>
+        <Val>his Ma- jestie at Oxford</Val>
+      </TIn>
+    </E>
+    <E id="GPE1" t="GPE">
+      <TIn c="c9">
+        <Pos tok="2" endOff="6"/>
+        <Val>Oxford</Val>
+      </TIn>
+    </E>
+    <E id="VEH1" t="VEH">
+      <TIn c="c10">
+        <Pos tok="2" n="2"/>
+        <Val>Sancta Clara</Val>
+      </TIn>
+    </E>
+    <E id="GPE2" t="GPE">
+      <TIn c="c10">
+        <Pos tok="8" n="2" endOff="7"/>
+        <Val>Sancto Domingo</Val>
+      </TIn>
+    </E>
+    <E id="PROD1" t="PROD">
+      <TIn c="c11">
+        <Pos tok="3" endOff="5"/>
+        <Val>Plate</Val>
+      </TIn>
+    </E>
+    <E id="PROD2" t="PROD">
+      <TIn c="c11">
+        <Pos tok="4"/>
+        <Val>Cocheneal</Val>
+      </TIn>
+    </E>
+    <E id="PERS1" t="PERS">
+      <TIn c="c13">
+        <Pos tok="2" n="3" endOff="9"/>
+        <Val>Captaine Bennet Strafford</Val>
+      </TIn>
+      <A id="GIV1" t="GIV">
+        <TIn c="c13">
+          <Pos tok="3"/>
+          <Val>Bennet</Val>
+        </TIn>
+      </A>
+      <A id="SUR1" t="SUR">
+        <TIn c="c13">
+          <Pos tok="4" endOff="9"/>
+          <Val>Strafford</Val>
+        </TIn>
+      </A>
+    </E>
+    <E id="GPE3" t="GPE">
+      <TIn c="c14">
+        <Pos tok="3" endOff="11"/>
+        <Val>Southampton</Val>
+      </TIn>
+      <OIn c="c1">
+        <ORef ext="w143"/>
+      </OIn>
+    </E>
+    <E id="PERS2" t="PERS">
+      <TIn c="c16">
+        <Pos tok="1" endOff="4"/>
+        <Pos tok="2" n="2"/>
+        <Val>King of Spaine</Val>
+      </TIn>
+    </E>
+    <E id="PERS3" t="PERS">
+      <TIn c="c16">
+        <Pos tok="1" endOff="4"/>
+        <Pos tok="2"/>
+        <Pos tok="5"/>
+        <Val>King of England</Val>
+      </TIn>
+    </E>
+    <E id="VEH2" t="VEH">
+      <TIn c="c19">
+        <Pos tok="0" n="2" endOff="5"/>
+        <Val>Sancta Clara</Val>
+      </TIn>
+      <CIn c="c1">
+        <Poly pts="342,2169 661,2169 661,2236 342,2236"/>
+      </CIn>
+    </E>
+    <E id="GPE6" t="GPE">
+      <TIn c="c19">
+        <Pos tok="5" endOff="11"/>
+        <Val>Southampton</Val>
+      </TIn>
+    </E>
+    <E id="LANG1" t="LANG">
+      <TIn c="c20">
+        <Pos tok="4" endOff="7"/>
+        <Val>Spanish</Val>
+      </TIn>
+    </E>
+    <E id="GPE4" t="GPE">
+      <TIn c="c20">
+        <Pos tok="6" endOff="6"/>
+        <Val>Oxford</Val>
+      </TIn>
+    </E>
+    <E id="PERS4" t="PERS">
+      <TIn c="c22">
+        <Pos tok="0" n="2" endOff="8"/>
+        <Val>Sr Torriano</Val>
+      </TIn>
+      <A id="SUR2" t="SUR">
+        <TIn c="c22">
+          <Pos tok="1" endOff="8"/>
+          <Val>Torriano</Val>
+        </TIn>
+      </A>
+      <A id="GEN1" t="GEN">
+        <Norm>male</Norm>
+      </A>
+    </E>
+    <E id="GPE5" t="GPE">
+      <TIn c="c23">
+        <Pos tok="0" endOff="6"/>
+        <Val>LONDON</Val>
+      </TIn>
+    </E>
+    <E id="PERS5" t="PERS">
+      <TIn c="c24">
+        <Pos tok="2" n="2" endOff="6"/>
+        <Val>Nathaniel Butter</Val>
+      </TIn>
+      <A id="GIV2" t="GIV">
+        <TIn c="c24">
+          <Pos tok="2"/>
+          <Val>Nathaniel</Val>
+        </TIn>
+      </A>
+      <A id="SUR3" t="SUR">
+        <TIn c="c24">
+          <Pos tok="3" endOff="6"/>
+          <Val>Butter</Val>
+        </TIn>
+      </A>
+    </E>
+    <E id="DATE1" t="DATE">
+      <Norm>1643-01-17</Norm>
+      <TIn c="c24">
+        <Pos tok="4" n="3" endOff="4"/>
+        <Val>Jan. 17. 1643</Val>
+      </TIn>
+    </E>
+  </Entities>
+  <Relations>
+    <DirRel id="LOCD1" t="LOCD">
+      <S e="VEH2"/>
+      <T e="GPE6"/>
+    </DirRel>
+  </Relations>
+  <Highlights/>
+</NE>
