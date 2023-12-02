@@ -51,6 +51,13 @@ Minor updates should preserve backwards compatibility.</documentation></annotati
 			<enumeration value="other"></enumeration>
 		</restriction>
 	</simpleType>
+	<simpleType name="RequiredSimpleType">
+		<restriction base="string">
+			<enumeration value="no"></enumeration>
+			<enumeration value="per-entity"></enumeration>
+			<enumeration value="per-page"></enumeration>
+		</restriction>
+	</simpleType>
 	<complexType name="EntityTypesType">
 		<sequence>
 			<element name="ET" type="nem:EntityTypeType" minOccurs="0" maxOccurs="unbounded"/>
@@ -133,6 +140,10 @@ Minor updates should preserve backwards compatibility.</documentation></annotati
 				<attribute name="symbol" type="string">
 					<annotation>
 						<documentation>A one-character symbol represnting the attribute (used for implied).</documentation>
+					</annotation></attribute>
+				<attribute name="required" type="nem:RequiredSimpleType">
+					<annotation>
+						<documentation>Is this attribute required when tagging named entities?</documentation>
 					</annotation></attribute>
 			</extension>
 		</complexContent>
